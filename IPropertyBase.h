@@ -4,6 +4,7 @@
 using namespace std;
 
 class IPropertyBase {
+public:
     virtual int getId() const = 0;
     virtual const string &getName() const = 0;
     virtual double getCount() const = 0;

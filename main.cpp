@@ -1,8 +1,10 @@
 #include<iostream>
 
 using namespace std;
+#include "PropertyManagement.h"
 
 int main(){
-    cout << "hello world" << endl;
+    PropertyManagement propertyManagement;
+    propertyManagement.addNewItem();
 }
 

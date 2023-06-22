@@ -5,4 +5,4 @@ set(CMAKE_CXX_STANDARD 14)
 
 add_executable(uiap4012_final_Hosseinjavan
         main.cpp
-        IPropertyBase.h PropertyManagement.cpp PropertyManagement.h)
+        IPropertyBase.h PropertyManagement.cpp PropertyManagement.h Property.cpp Property.h)
