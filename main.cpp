@@ -6,5 +6,6 @@ using namespace std;
 int main(){
     PropertyManagement propertyManagement;
     propertyManagement.addNewItem();
+    propertyManagement.deleteItem();
 }
 

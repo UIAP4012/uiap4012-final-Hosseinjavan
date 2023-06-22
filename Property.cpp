@@ -1,6 +1,5 @@
 #include "Property.h"
-
-#include <utility>
+#include <iostream>
 
 int Property::getId() const {
     return m_id;
@@ -25,4 +24,8 @@ Property::Property(const int &id, string name, const double &count, const double
     , m_price(price)
 {
 
+}
+
+void Property::print() {
+    std::cout << "Id: " << getId() << ", name: " << getName() << ", count: " << getCount() << ", price: " << getPrice() << endl;
 }
