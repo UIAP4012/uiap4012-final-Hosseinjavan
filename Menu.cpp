@@ -21,12 +21,12 @@ void Menu::addNewItem() {
     if(item != nullptr){
         cout << "Item added successfully added" << endl;
     }
-    m_receiptHandler->writeStocks(item);
+    m_logger->writeStocks(item);
 }
 
-Menu::Menu(std::shared_ptr<PropertyManagement> propertyManagement, std::shared_ptr<ReceiptHandler> receiptHandler)
+Menu::Menu(std::shared_ptr<PropertyManagement> propertyManagement, std::shared_ptr<Logger> receiptHandler)
     : m_propertyManagement(propertyManagement)
-    , m_receiptHandler(receiptHandler)
+    , m_logger(receiptHandler)
 {
 
 }
@@ -135,7 +135,7 @@ void Menu::buyItem(User user) {
             }
         }
         if(opt == 2){
-            m_receiptHandler->writeReceipt(user, boughtItems);
+            m_logger->writeReceipt(user, boughtItems);
             break;
         }
     }
@@ -206,7 +206,9 @@ int Menu::signup() {
     {
         return -1;
     }
-    m_users.push_back(User(name, lastName, m_userCountAsId++, username, password));
+    User user = User(name, lastName, m_userCountAsId++, username, password);
+    m_users.push_back(user);
+    m_logger->writeUserData(user);
     return m_users.size() - 1;
 }
 

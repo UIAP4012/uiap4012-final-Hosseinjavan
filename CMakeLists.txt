@@ -12,4 +12,4 @@ include_directories(${PROJECT_HEADERS})
 
 add_executable(uiap4012_final_Hosseinjavan
         main.cpp
-        IPropertyBase.h PropertyManagement.cpp PropertyManagement.h Property.cpp Property.h Menu.cpp Menu.h Person.cpp Person.h User.cpp User.h ReceiptHandler.cpp ReceiptHandler.h)
+        IPropertyBase.h PropertyManagement.cpp PropertyManagement.h Property.cpp Property.h Menu.cpp Menu.h Person.cpp Person.h User.cpp User.h Logger.cpp Logger.h)

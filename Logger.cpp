@@ -1,8 +1,8 @@
-#include "ReceiptHandler.h"
+#include "Logger.h"
 #include <iostream>
 #include <fstream>
 
-void ReceiptHandler::writeReceipt(User user, std::vector<std::shared_ptr<IPropertyBase>> items) {
+void Logger::writeReceipt(User user, std::vector<std::shared_ptr<IPropertyBase>> items) {
      std::ofstream receiptFile;
      string path = "../Receipts/";
      //creating this variable for debug
@@ -18,7 +18,7 @@ void ReceiptHandler::writeReceipt(User user, std::vector<std::shared_ptr<IProper
      receiptFile.close();
 }
 
-void ReceiptHandler::writeStocks(std::shared_ptr<IPropertyBase> item) {
+void Logger::writeStocks(std::shared_ptr<IPropertyBase> item) {
     std::ofstream stocks;
     stocks.open(m_stocksPath, std::ios_base::app);
     stocks << "Id,name,count,price\n";
@@ -26,8 +26,17 @@ void ReceiptHandler::writeStocks(std::shared_ptr<IPropertyBase> item) {
     stocks.close();
 }
 
-ReceiptHandler::ReceiptHandler()
+Logger::Logger()
     : m_stocksPath("../Stocks/Stocks.csv")
+    , m_userPath("../Users/Users.csv")
 {
 
+}
+
+void Logger::writeUserData(User user) {
+    std::ofstream users;
+    users.open(m_userPath, std::ios_base::app);
+    users << "name,lastName,id,username,password\n";
+    users << user.getName() << "," << user.getLastName() << "," << user.getId() << "," << user.getUsername() << "," << user.getPasswordHash() << "\n";
+    users.close();
 }

@@ -4,10 +4,12 @@
 #include <memory>
 #include <vector>
 
-class ReceiptHandler {
+class Logger {
     string m_stocksPath;
+    string m_userPath;
 public:
-    ReceiptHandler();
+    Logger();
     void writeReceipt(User user, std::vector<std::shared_ptr<IPropertyBase>> items);
     void writeStocks(std::shared_ptr<IPropertyBase> item);
+    void writeUserData(User user);
 };

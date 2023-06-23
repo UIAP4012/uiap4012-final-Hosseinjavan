@@ -1,14 +1,14 @@
 #include<iostream>
 #include "Menu.h"
-#include "ReceiptHandler.h"
+#include "Logger.h"
 #include "Property.h"
 
 using namespace std;
 
 int main(){
-    Menu menu(std::make_shared<PropertyManagement>(), std::make_shared<ReceiptHandler>());
+    Menu menu(std::make_shared<PropertyManagement>(), std::make_shared<Logger>());
     /*
-    ReceiptHandler receiptHandler;
+    Logger receiptHandler;
     vector<shared_ptr<IPropertyBase>> tmp;
     tmp.push_back(make_shared<Property>(0, "Iphone13", 10, 40));
     User user("mostafa", "jalalhoseiny", 0, "mostafajalal20", "123456");
