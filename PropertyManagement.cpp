@@ -1,22 +1,13 @@
 #include "PropertyManagement.h"
 #include <iostream>
-#include "Property.h"
 using namespace std;
 
-bool PropertyManagement::addNewItem()
+std::shared_ptr<Property> PropertyManagement::addNewItem(string name, double count, double price)
 {
-    string name;
-    cout << "Enter property name: ";
-    cin >> name;
-    double count;
-    cout << "Enter property count: ";
-    cin >> count;
-    double price;
-    cout << "Enter property price: ";
-    cin >> price;
-    m_properties[m_itemCounterAsId] = std::make_shared<Property>(m_itemCounterAsId, name, count, price);
+    auto item = std::make_shared<Property>(m_itemCounterAsId, name, count, price);
+    m_properties.push_back(item);
     m_itemCounterAsId++;
-    return true;
+    return item;
 }
 
 PropertyManagement::PropertyManagement()
@@ -25,19 +16,14 @@ PropertyManagement::PropertyManagement()
 
 }
 
-bool PropertyManagement::deleteItem()
+bool PropertyManagement::deleteItem(int id)
 {
-    printItems();
-    int id;
-    cout << "Enter Id of item that you want to delete: ";
-    cin >> id;
-    if(m_properties.find(id) != m_properties.end())
-    {
-        m_properties.erase(id);
-        cout << "Item removed successfully" << endl;
-        return true;
+    for(auto it = m_properties.begin(); it != m_properties.end(); it++){
+        if(it->get()->getId() == id){
+            m_properties.erase(it);
+            return true;
+        }
     }
-    cout << "Item with entered id not found";
     return false;
 }
 
@@ -45,6 +31,40 @@ void PropertyManagement::printItems()
 {
     for(auto it = m_properties.begin(); it != m_properties.end(); it++)
     {
-        it->second->print();
+        it->get()->print();
     }
+}
+
+bool PropertyManagement::updateProperty(int id, double newCount) {
+    if(newCount < 0)
+    {
+        return false;
+    }
+    for(int i = 0; i < m_properties.size(); i++)
+    {
+        if(m_properties[i]->getId() == id){
+            if(m_properties[i]->getCount() >= newCount) {
+                m_properties[i]->updateCount(newCount);
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+shared_ptr<IPropertyBase> PropertyManagement::buyItem(int id, double count) {
+    for(int i = 0; i < m_properties.size(); i++){
+        if(m_properties[i]->getId() == id) {
+            if (m_properties[i]->getCount() >= count) {
+                m_properties[i]->updateCount(m_properties[i]->getCount() - count);
+                cout << "item found to buy" << endl;
+                return m_properties[i];
+            }
+        }
+    }
+    return nullptr;
+}
+
+bool PropertyManagement::isItemsEmpty() {
+    return m_properties.empty();
 }

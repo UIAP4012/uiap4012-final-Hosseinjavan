@@ -1,11 +1,19 @@
 #include<iostream>
+#include "Menu.h"
+#include "ReceiptHandler.h"
+#include "Property.h"
 
 using namespace std;
-#include "PropertyManagement.h"
 
 int main(){
-    PropertyManagement propertyManagement;
-    propertyManagement.addNewItem();
-    propertyManagement.deleteItem();
+    Menu menu(std::make_shared<PropertyManagement>(), std::make_shared<ReceiptHandler>());
+    /*
+    ReceiptHandler receiptHandler;
+    vector<shared_ptr<IPropertyBase>> tmp;
+    tmp.push_back(make_shared<Property>(0, "Iphone13", 10, 40));
+    User user("mostafa", "jalalhoseiny", 0, "mostafajalal20", "123456");
+    receiptHandler.writeStocks(tmp[0]);
+     */
+    menu.loginMenu();
 }
 

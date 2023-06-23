@@ -14,5 +14,6 @@ public:
     const string &getName() const override;
     double getCount() const override;
     double getPrice() const override;
-    void print() override ;
+    void updateCount(double newCount) override ;
+    void print() override;
 };

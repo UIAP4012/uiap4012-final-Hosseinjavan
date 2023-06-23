@@ -29,3 +29,7 @@ Property::Property(const int &id, string name, const double &count, const double
 void Property::print() {
     std::cout << "Id: " << getId() << ", name: " << getName() << ", count: " << getCount() << ", price: " << getPrice() << endl;
 }
+
+void Property::updateCount(double newCount) {
+    m_count = newCount;
+}
