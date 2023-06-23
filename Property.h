@@ -1,17 +1,19 @@
 #pragma once
-#include <string>
+#include "IPropertyBase.h"
 
-using namespace std;
 
-class Property {
+class Property : public IPropertyBase{
     int m_id;
-    string m_name;
+    std::string m_name;
     double m_count;
     double m_price;
+
 public:
-    Property(int id, string name, double count, double price);
-    int getMId() const;
-    const string &getMName() const;
-    double getMCount() const;
-    double getMPrice() const;
+    Property(const int &id, string name, const double &count, const double &price);
+    int getId() const override;
+    const string &getName() const override;
+    double getCount() const override;
+    double getPrice() const override;
+    void updateCount(double newCount) override ;
+    void print() override;
 };
